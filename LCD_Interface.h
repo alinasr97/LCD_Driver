@@ -32,5 +32,7 @@ void LCD_WriteString(u8 *ptr);
 void LCD_GoTo(u8 Y, u8 X);
 void LCD_WriteNumber(u64 num);
 void LCD_WriteNumberInBinary(u8 num);
+void LCD_CreateCharacter(u8 *pattern, u8 location);
 void LCD_Clear(void);
+void LCD_Home(void);
 #endif /* LCD_INTERFACE_H_ */
