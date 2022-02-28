@@ -156,7 +156,3 @@ void LCD_Clear(void)
 {
 	LCD_SendCommand(LCD_Clear_);
 }
-void LCD_Home(void)
-{
-	LCD_SendCommand(LCD_Home_);
-}
