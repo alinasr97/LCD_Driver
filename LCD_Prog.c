@@ -8,10 +8,10 @@
 #include "LCD_Interface.h"
 
 #define LCD_Clear_            0x01
-#define LCD_Home              0x02
+#define LCD_Home_             0x02
 #define LCD_EntryMode         0x06
 #define LCD_DisplayOff        0x08
-#define LCD_DisplayOn         0x0f
+#define LCD_DisplayOn         0x0C
 #define LCD_FinctionReset     0x30
 #define LCD_FinctionSet8bit   0x38
 #define LCD_SetCursor         0x80
@@ -22,7 +22,7 @@ void LCD_Init(void)
 	/* delay 30ms to ensure the initialization of the LCD driver */
 	_delay_ms(50);
 	/* Return Home*/
-	LCD_SendCommand(LCD_Home);
+	LCD_SendCommand(LCD_Home_);
 	_delay_ms(15);
 	/* Function Set*/
 	LCD_SendCommand(LCD_FinctionSet8bit);
@@ -141,7 +141,22 @@ void LCD_WriteNumberInBinary(u8 num)
 	
 }
 
+void LCD_CreateCharacter(u8 *pattern, u8 location)
+{
+	u8 i;
+	LCD_SendCommand(0x40+(location*8));
+	for(i=0;i<8;i++)
+	{
+		LCD_WriteChar(pattern[i]);
+	}
+	LCD_GoTo(1,1);
+}
+
 void LCD_Clear(void)
 {
 	LCD_SendCommand(LCD_Clear_);
+}
+void LCD_Home(void)
+{
+	LCD_SendCommand(LCD_Home_);
 }
